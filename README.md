@@ -1,5 +1,6 @@
 
 # About MyBatis Scripted Extension
+
 This is a IntelliJ IDEA *Scripted Extension* that exports a single
 table into Mybatis XML Mapper file.
 
