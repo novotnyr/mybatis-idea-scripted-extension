@@ -60,8 +60,28 @@ As of IntelliJ IDEA 2017.1, there are three available schema exportes. These are
 
 ![](screenshot-2.png)
 
-Implementing Scripted Extension
-===============================
+Creating a Scripted Extension
+=============================
+
+Creating a *Scripted Extension* is easy. Just decide whether it's **extractor**
+of table data or whether it's *schema exporter*. In the **Scratches** view,
+right click the proper directory (`extractors` or `schema`) and create a new
+Groovy file.
+
+There is no need for `main()` method or anything. It's a *Groovy* script, after all.
+
+The "Hello World" of the scripted extensions:
+
+    FILES.chooseDirectoryAndSave("Export", "Export the results") { directory ->
+        def file = new File(directory, "results.txt")
+        file << "Export completed!"
+    }
+
+Then, open the *Database* view, select an arbitrary table with a right-click and
+pick *Scripted Extension* menu and run your script.
+
+Going further with Scripted Extensions
+======================================
 
 The actual implementation process might be much more simple than
 full-fledged IntelliJ IDEA, but there are some steep points in the learning curve.
@@ -76,12 +96,6 @@ ZIP contains source code for the OpenAPI extension. Might be worth the look.
 Since there is no published JavaDoc API for the *Scripted Extensions*,
 studying the source is the primary source of information.
 
-Creating a Scripted Extension
-=============================
-
-Creating a *Scripted Extension* is easy. Just decide, whether it's **extractor** of table data or whether it's *schema exporter*. In the **Scratches** view, right click the proper directory (`extractors` or `schema`) and create a new Groovy file.
-
-There is no need for `main()` method or anything. It's a *Groovy* script, after all.
 
 Groovy Bindings
 ===============
