@@ -1,10 +1,11 @@
-
-# About MyBatis Scripted Extension
+About MyBatis Scripted Extension
+================================
 
 This is a IntelliJ IDEA *Scripted Extension* that exports a single
 table into Mybatis XML Mapper file.
 
-## Installation
+Installation
+------------
 
 On MacOS, copy the `groovy` file into 
 
@@ -14,11 +15,13 @@ On MacOS, copy the `groovy` file into
 
 Alternatively, from the **Scratches** view, put the file into `Extensions / Database Tools and SQL / Schema` folder.
 
-## Running
+Running
+-------
 
 In the **Database** view, pick an arbitrary table. Right click and use **Scripted Extensions** / **Generate Mybatis XML**.
 
-## Settings
+Settings
+--------
 
 *	**Entity Package**: the Java package that will hold the mapper XML. This will be used in the `<resultMap>` element in the `resultType` attribute.
 *	**Entity Class Name**: the name of the Java object that will be mapped. It is used to:
@@ -27,8 +30,8 @@ In the **Database** view, pick an arbitrary table. Right click and use **Scripte
 	If omitted, the class name will be deduced from the table name.
 *	**Mapper Namespace**: the Java package of the mapper XML file. It should **not** contain the class name! (Mybatis uses the full mapper class name as a mapper namespace. The class name will be deduced from the *Entity Class Name* and the *Mapper Namespace*).
 
-
-# Scripted Extensions
+Scripted Extensions
+===================
 
 *IntelliJ IDEA Database Tools and Extensions* provide a nice plugin-like mechanism
 for data and metadata export. A few lines of Groovy / Clojure code and
@@ -57,7 +60,8 @@ As of IntelliJ IDEA 2017.1, there are three available schema exportes. These are
 
 ![](screenshot-2.png)
 
-# Implementing Scripted Extension
+Implementing Scripted Extension
+===============================
 
 The actual implementation process might be much more simple than
 full-fledged IntelliJ IDEA, but there are some steep points in the learning curve.
@@ -72,14 +76,15 @@ ZIP contains source code for the OpenAPI extension. Might be worth the look.
 Since there is no published JavaDoc API for the *Scripted Extensions*,
 studying the source is the primary source of information.
 
-# Creating a Scripted Extension
+Creating a Scripted Extension
+=============================
 
 Creating a *Scripted Extension* is easy. Just decide, whether it's **extractor** of table data or whether it's *schema exporter*. In the **Scratches** view, right click the proper directory (`extractors` or `schema`) and create a new Groovy file.
 
 There is no need for `main()` method or anything. It's a *Groovy* script, after all.
 
-
-# Groovy Bindings
+Groovy Bindings
+===============
 
 The *Scripted Extension* exposes multiple predefined global variables:
 
@@ -91,9 +96,11 @@ The *Scripted Extension* exposes multiple predefined global variables:
 All objects are defined in the `com.intellij.database.view.generators.SchemaScriptBindings` file in the
 Database OpenAPI.
 
-# Important objects
+Important objects
+=================
 
-## Das entities
+Das entities
+------------
 
 The whole database tree is represented by `com.intellij.database.model.Das____` objects (is it a Kraftwerk `Das Model` reference?).
 Furthermore, all objects that are selected by users are available in the global `SELECTION` variable,
@@ -130,17 +137,19 @@ IDEA **Event Log**).
 
 The log can be show via **Help | Show Log in Finder** and then via **Console** application on MacOS.
 
-# Tips and tricks
+Tips and tricks
+===============
 
-
-## Handling output
+Handling output
+---------------
 
 Many *Scripted Extensions* just pass arount a `Writer` object that is used to append
 the generated lines. As an alternative, despite being more memory heavy, is to pass around String objects.
 
 In Groovy, it's even better, since we can pass around much more improved Groovy strings, `GString`s.
 
-## Opening custom dialogs
+Opening custom dialogs
+----------------------
 
 The *Scripted Extensions* are not quite ready for the customization of the export
 procedure. However, we can open a custom dialog:
@@ -149,7 +158,8 @@ procedure. However, we can open a custom dialog:
 *	the dialog can be spawned in the proper thread via `com.intellij.openapi.application.ApplicationManager` 
 	and its `invokeLater()` method that takes `Runnable` with the dialog-opening code.
 
-## Organizing scripts
+Organizing scripts
+------------------
 
 The one-file convention calls for a bit of organization. 
 
