@@ -124,7 +124,7 @@ This simple helper holds a few methods that arrange 'Save' dialogs:
 *	`chooseFileAndSave()` opens a simple 'Save File' dialog that can be used to save the resulting export data
 *	`chooseDirectoryAndSave()` opens a simple 'Save to Directory' dialog to save a set of result files
 
-## LOG (`com.intellij.database.view.generators.Logger`)
+## LOG (`com.intellij.database.view.generators.Logger`)
 
 The `LOG` is a dumbed-down version of Logger API. There are only a few methods:
 
